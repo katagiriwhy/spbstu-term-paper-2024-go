@@ -2,6 +2,7 @@ package config
 
 import (
 	"os"
+	"time"
 
 	"gopkg.in/yaml.v2"
 )
@@ -20,18 +21,18 @@ type DBConfiguration struct {
 }
 
 type ProgramConfiguration struct {
-	Address           string `yaml:"bindAddress"`
-	Port              string `yaml:"port"`
-	JiraUrl           string `yaml:"jiraUrl"`
-	ThreadCount       uint   `yaml:"threadCount"`
-	IssueInOneRequest uint   `yaml:"issueInOneRequest"`
-	MaxTimeSleep      int64  `yaml:"maxTimeSleep"`
-	MinTimeSleep      int64  `yaml:"minTimeSleep"`
+	Address           string        `yaml:"bindAddress"`
+	Port              string        `yaml:"port"`
+	JiraUrl           string        `yaml:"jiraUrl"`
+	ThreadCount       uint          `yaml:"threadCount"`
+	IssueInOneRequest uint          `yaml:"issueInOneRequest"`
+	MaxTimeSleep      time.Duration `yaml:"maxTimeSleep"`
+	MinTimeSleep      time.Duration `yaml:"minTimeSleep"`
 }
 
 func ReadConfig() (*Config, error) {
 	cfg := &Config{}
-	file, err := os.Open("configDB.yaml")
+	file, err := os.Open("C:\\Users\\katagiri\\GolandProjects\\spbstu-term-paper-2024-go\\database\\config\\configDB.yaml")
 	if err != nil {
 		return nil, err
 	}
